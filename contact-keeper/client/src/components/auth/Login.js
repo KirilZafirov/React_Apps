@@ -1,7 +1,27 @@
-import React, { useState, useContext } from 'react'
-import AuthContext from '../../context/auth/authContext';
+import React, { useState, useContext , useEffect } from 'react'
+import AuthContext from '../../context/auth/authContext'; 
+import AlertContext from '../../context/alert/alertContext';
 
-const Login = () => {
+const Login = (props) => {
+
+    const alertContext = useContext(AlertContext);
+    const authContext = useContext(AuthContext);
+
+    const { setAlert } = alertContext;
+    const { login , error , clearErrors , isAuthenticated } = authContext;
+
+
+    useEffect(() => { 
+        if(isAuthenticated) {
+            props.history.push('/')
+        }
+
+        if(error === 'Invalid Credentials') {
+           setAlert(error , 'danger'); 
+           clearErrors();
+        }
+        // eslint-disable-next-line
+    }, [error , isAuthenticated , props.history ])
 
     const [user, setUser] = useState({
         email: '',
@@ -13,8 +33,17 @@ const Login = () => {
     const onChange = (e) => setUser({ ...user , [e.target.name]: e.target.value});
 
     const onSubmit = (e) => {
-        e.preventDefault();
-        console.log('Login submit');
+        e.preventDefault(); 
+        
+        if(email === '' || password === '') {
+            setAlert('Form invalid', 'danger');
+        } else {
+            login({
+                email,
+                password
+            });
+        }
+
     }
     return (
         <div className='form-container'>
@@ -26,11 +55,11 @@ const Login = () => {
             <form onSubmit={onSubmit}> 
                 <div className="form-group">
                     <label htmlFor="email">Email</label>
-                    <input type='email' name='email' value={email} onChange={onChange}></input>
+                    <input type='email' name='email' value={email} onChange={onChange} required></input>
                 </div>
                 <div className="form-group">
                     <label htmlFor="password">Password</label>
-                    <input type='password' name='password' value={password} onChange={onChange}></input>
+                    <input type='password' name='password' value={password} onChange={onChange} required></input>
                 </div> 
 
                 <input type='submit' className='btn btn-primary btn-block' value='Login'></input>
