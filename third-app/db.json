@@ -6,6 +6,13 @@
       "tech": "John Doe",
       "date": "2020-09-02T12:49:13.896Z",
       "id": 1
+    },
+    {
+      "id": 2,
+      "message": "Computer Broke",
+      "attention": false,
+      "tech": "John Doe",
+      "date": "2020-09-02T14:08:45.803Z"
     }
   ],
   "techs": [
