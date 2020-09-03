@@ -9,9 +9,9 @@ const User = require('../models/User');
 // @route  GET api/products
 // @desc   Get all products
 // @access Private 
-router.get('/', auth, async (req, res) => {
+router.get('/', async (req, res) => {
     try {
-        const products = await Product.find({ user: req.user.id }).sort({ date: -1 });
+        const products = await Product.sort({ date: -1 });
         res.json(products);
     } catch (error) {
         console.log(error.message);

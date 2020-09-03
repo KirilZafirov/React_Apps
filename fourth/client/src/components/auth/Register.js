@@ -77,7 +77,7 @@ const Register = (props) => {
                      minLength="6"></input>
                 </div>
 
-                <input type='submit' className='btn btn-primary btn-block' value='Register'></input>
+                <input type='submit' className='btn blue btn-block' value='Register'></input>
             </form>
         </div>
     )

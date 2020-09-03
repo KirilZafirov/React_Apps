@@ -1,3 +1,4 @@
+export const baseApiUrl = 'http://localhost:5000';
 // Products
 export const GET_PRODUCTS = 'GET_PRODUCTS';
 export const CLEAR_PRODUCTS = 'CLEAR_PRODUCTS';
@@ -21,4 +22,5 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const LOGOUT = 'LOGOUT';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
+
 

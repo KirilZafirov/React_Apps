@@ -1,5 +1,5 @@
-import React, { useState, useContext , useEffect } from 'react'
-import AuthContext from '../../context/auth/authContext'; 
+import React, { useState, useContext, useEffect } from 'react'
+import AuthContext from '../../context/auth/authContext';
 import AlertContext from '../../context/alert/alertContext';
 
 const Login = (props) => {
@@ -8,20 +8,20 @@ const Login = (props) => {
     const authContext = useContext(AuthContext);
 
     const { setAlert } = alertContext;
-    const { login , error , clearErrors , isAuthenticated } = authContext;
+    const { login, error, clearErrors, isAuthenticated } = authContext;
 
 
-    useEffect(() => { 
-        if(isAuthenticated) {
+    useEffect(() => {
+        if (isAuthenticated) {
             props.history.push('/')
         }
 
-        if(error === 'Invalid Credentials') {
-           setAlert(error , 'danger'); 
-           clearErrors();
+        if (error === 'Invalid Credentials') {
+            setAlert(error, 'danger');
+            clearErrors();
         }
         // eslint-disable-next-line
-    }, [error , isAuthenticated , props.history ])
+    }, [error, isAuthenticated, props.history])
 
     const [user, setUser] = useState({
         email: '',
@@ -30,12 +30,12 @@ const Login = (props) => {
 
     const { email, password } = user;
 
-    const onChange = (e) => setUser({ ...user , [e.target.name]: e.target.value});
+    const onChange = (e) => setUser({ ...user, [e.target.name]: e.target.value });
 
     const onSubmit = (e) => {
-        e.preventDefault(); 
-        
-        if(email === '' || password === '') {
+        e.preventDefault();
+
+        if (email === '' || password === '') {
             setAlert('Form invalid', 'danger');
         } else {
             login({
@@ -52,6 +52,7 @@ const Login = (props) => {
                     Login
                 </span>
             </h1>
+
             <form onSubmit={onSubmit}> 
                 <div className="form-group">
                     <label htmlFor="email">Email</label>
@@ -62,7 +63,7 @@ const Login = (props) => {
                     <input type='password' name='password' value={password} onChange={onChange} required></input>
                 </div> 
 
-                <input type='submit' className='btn btn-primary btn-block' value='Login'></input>
+                <input type='submit' className='btn btn-block blue' value='Login'></input>
             </form>
         </div>
     )

@@ -12,12 +12,13 @@ import {
     FILTER_PRODUCTS,
     CLEAR_FILTER,
     PRODUCT_ERROR,
-    GET_PRODUCT,
     CLEAR_PRODUCTS,
-    GET_PRODUCTS
+    GET_PRODUCTS,
+    baseApiUrl
 } from '../types'; 
 
 const ProductState = props => {
+ 
     const initialState = {
         products: null,
         current: null,
@@ -31,14 +32,13 @@ const ProductState = props => {
     const getProducts = async () => {
        
         try {
-            const res = await axios.get('/api/products');
-
+            const res = await axios.get(`${baseApiUrl}/api/products`);
+         
             dispatch({
                 type: GET_PRODUCTS,
                 payload: res.data
-            });
-
-        } catch (err) {
+            }); 
+        } catch (err) {  
             dispatch({
                 type: PRODUCT_ERROR,
                 payload: err.response.msg
@@ -55,7 +55,7 @@ const ProductState = props => {
         }
 
         try {
-            const res = await axios.post('/api/products' , product , config);
+            const res = await axios.post(`${baseApiUrl}/api/products` , product , config);
 
             dispatch({
                 type: ADD_PRODUCT,
@@ -75,7 +75,7 @@ const ProductState = props => {
     const deleteProduct = async (id) => {
         try {
             
-            const res = await axios.delete(`/api/products/${id}`);
+            await axios.delete(`${baseApiUrl}/api/products/${id}`);
 
             dispatch({
                 type: DELETE_PRODUCT,
@@ -98,7 +98,7 @@ const ProductState = props => {
                 }
             } 
             
-            const res = await axios.put(`/api/products/${product._id}`, product , config );
+            const res = await axios.put(`${baseApiUrl}/api/products/${product._id}`, product , config );
 
             dispatch({
                 type: UPDATE_PRODUCT,

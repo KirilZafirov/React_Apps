@@ -12,7 +12,8 @@ import {
     LOGIN_SUCCESS,
     LOGIN_FAIL,
     LOGOUT,
-    CLEAR_ERRORS
+    CLEAR_ERRORS,
+    baseApiUrl
 } from '../types';
 
 const AuthState = props => {
@@ -34,7 +35,7 @@ const AuthState = props => {
         }
 
         try {
-            const res = await axios.get('/api/auth');
+            const res = await axios.get(`${baseApiUrl}/api/auth`);
             dispatch({
                 type: USER_LOADED,
                 payload: res.data
@@ -54,7 +55,7 @@ const AuthState = props => {
         }
 
         try {
-            const res = await axios.post('/api/users', formData, config);
+            const res = await axios.post(`${baseApiUrl}/api/users`, formData, config);
 
             dispatch({
                 type: REGISTER_SUCCESS,
@@ -79,7 +80,7 @@ const AuthState = props => {
         }
 
         try {
-            const res = await axios.post('/api/auth', formData, config);
+            const res = await axios.post(`${baseApiUrl}/api/auth`, formData, config);
 
             dispatch({
                 type: LOGIN_SUCCESS,
