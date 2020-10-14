@@ -162,11 +162,11 @@ const Navbar = ({ title, icon }) => {
 
     const authLinks = (
         <Fragment>
-            <li>
+            <li className="waves-effect">
                 Hello {user && user.name}
             </li>
             <li>
-                <a href='#!' onClick={onLogout}>
+                <a href='#!' onClick={onLogout} className="waves-effect">
                     <i className='fas fa-sign-out-alt'></i>
                     <span className='hide-sm'>Logout</span>
                 </a>
@@ -177,7 +177,7 @@ const Navbar = ({ title, icon }) => {
         <Fragment>
             {productLinks}
             <li>
-                <Link to='/about'>About</Link>
+                <Link to='/about' className="waves-effect waves-blue">About</Link>
             </li>
             {/* <li>
                 <Link to='/register'>Register</Link>
